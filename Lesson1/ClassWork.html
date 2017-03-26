@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+ //Task1
+        var user = {};
+        user.name = "Вася";
+        user.surname = "Петров";
+        user.name = "Сергей";
+        delete user.name;
+
+//Task2
+        function isEmpty(obj) {
+            for (var index in obj) {
+                if (typeof obj[index] != 'function') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+//Task3
+
+        var arr = [1, 2, 31, 24, -67, 5, 3, 555, 79, -4, 21, 33, 89, -90];
+        var max = Math.max(arr);
+        var min = Math.min(arr);
+        var arrFiltered = arr.filter(function (element) {
+            return element > 0 && element % 2 == 0;
+        });
+        alert(arrFiltered);
+
+        
+
+
+    </script> 
+</body>
+</html>

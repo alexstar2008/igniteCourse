@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //--1
+        //var value = 0;
+        //function f() {
+        //    if (1) {
+        //        value = true;
+        //    } else {
+        //        var value = false;
+        //    }
+        //    alert( value );
+        //}
+        //f();
+        //-результат будет true
+        //-value изменится на true
+        //-никак, так как это блок кода никогда не выполнится
+
+        //--2
+        (function () {
+            function countSelf() {
+                if (countSelf.amount == undefined) {
+                    countSelf.amount = 1;
+                    return countSelf.amount;
+                }
+                else {
+                    return ++countSelf.amount;
+                }
+            }
+            //alert(countSelf());
+            //alert(countSelf());
+            //alert(countSelf());
+            //alert(countSelf());
+            //alert(countSelf());
+        })();
+       
+
+        //--3
+        (function () {
+            function makeArmy() {
+                var shooters = [];
+
+                for (var i = 0; i < 10; i++) {
+
+                    var shooter = function (i) {
+                        return function () {
+                            alert(i);
+                        };
+                    }(i);
+                    shooters.push(shooter);
+                }
+                return shooters;
+            }
+            var army = makeArmy();
+            //army[0](); // стрелок выводит 10, а должен 0
+            //army[5](); // стрелок выводит 10, а должен 5. 
+
+            function makeArmy() {
+                var shooters = [];
+
+                for (var i = 0; i < 10; i++) {
+                    var shooter = function f() { // функция-стрелок
+
+                        alert(f.i); // выводит свой номер
+                    };
+                    shooter.i = i;
+                    shooters.push(shooter);
+                }
+                return shooters;
+            }
+            var army = makeArmy();
+            //army[0](); // стрелок выводит 10, а должен 0
+            //army[5](); // стрелок выводит 10, а должен 5. 
+
+
+            function makeArmy() {
+                var shooters = [];
+
+                for (var i = 0; i < 10; i++) (function (i) {
+                    var shooter = function () {
+                        alert(i);
+
+                    };
+                    shooters.push(shooter);
+                }(i));
+
+                return shooters;
+            }
+            var army = makeArmy();
+            army[0](); // стрелок выводит 10, а должен 0
+            army[5](); // стрелок выводит 10, а должен 5. 
+        })();
+    
+        
+    </script>
+</body>
+</html>

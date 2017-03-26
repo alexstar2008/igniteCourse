@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+      <script>
+          //--1
+          // alert( [] == [] ); // false 
+          //сравнение ссылок , а не значений элементов массива
+          //alert( [] ==! [] ); // true
+          // Второй массив сначала преобр. в лог. тип true и инв. получаем false
+          // при сравнении полуим числ. преобр.
+          // первый массив даст 0 так как сработает сначала toString который вернет пустую строку
+          // 0 == 0 
+
+          //--2
+          (function () {
+              function Calculator() {
+                  this.read = function () {
+                      this.a = +prompt("Enter a:");
+                      this.b = +prompt("Enter b:");
+                  }
+                  this.sum = function () {
+                      return this.a + this.b;
+                  }
+                  this.mul = function () {
+                      return this.a * this.b;
+                  }
+              }
+
+              var calculator = new Calculator();
+              //calculator.read();
+
+              //alert("Сумма=" + calculator.sum());
+              //alert("Произведение=" + calculator.mul());
+          })();
+
+       
+
+          //--3
+          (function () {
+              function Summator() {
+                  this.sum = function (a, b) {
+                      return a + b;
+                  }
+                  this.run = function () {
+                      var a = +prompt("Введите a: ");
+                      var b = +prompt("Введите b: ");
+                      alert(this.sum(a, b));
+                  }
+              }
+              new Summator().run();
+
+          })();
+          
+      </script>
+</body>
+</html>

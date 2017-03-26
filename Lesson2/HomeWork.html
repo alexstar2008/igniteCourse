@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //--1
+        (function () {
+
+            function sum(a) {
+                if (sum.count == undefined) {
+                    sum.count = a;
+                }
+                else {
+                    sum.count += a;
+                }
+                return sum.count;
+            }
+            //alert(sum(3));
+            //alert(sum(5));
+            //alert(sum(228));
+            
+        })();
+
+        //--2
+        (function () {
+            function strCount(obj) {
+                var counter = 0;
+                for (var index in obj) {
+                    if (obj.hasOwnProperty(index)) {
+                        if (typeof obj[index] == "string") {
+                            counter++;
+                        }
+                        if (typeof obj[index] == "object") {
+                            counter+=strCount(obj[index]);
+                        }
+                    }
+                }
+                return counter;
+            }
+            //alert(strCount({
+            //    first: "1",
+            //    second: "2",
+            //    third: false,
+            //    fourth: ["anytime", 2, 3, 4],
+            //    fifth: null
+            //}));
+        })();
+
+        //--3
+        (function () {
+            function add(a) {
+                function plus(b) {
+                    return a + b;
+                }
+                return plus;
+            }
+            //alert(add(3)(4));
+        })();
+
+        
+    </script>
+</body>
+</html>

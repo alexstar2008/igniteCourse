@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+  
+      //--1
+        (function () {
+            function sum(a) {
+                var res = a;
+                function func(b) {
+                    res += b;
+                    return func;
+                }
+                func.toString = function () {
+                    return res;
+                }
+                return func;
+            }
+            //alert(sum(0)(1)(2)(3)(4)(5));
+        })();
+
+        (function () {
+            sum.prototype.value = 0;
+            function sum() {
+                sum.prototype.value += arguments[0];
+                sum.toString = function () {
+                    return sum.prototype.value;
+                }
+                return sum;
+            }
+            //alert(sum(0)(1)(2)(3)(4)(5));
+        })();
+       
+        //--2
+        (function () {
+            var arg = 4,                        
+            obj = {
+                param: 'num',                
+                func: 'return Math.sqrt(num)'
+            };
+            function runString(arg, object) {
+                var func = new Function(object.param, object.func)
+                return func(arg);
+            }
+            //alert(runString(arg, obj));
+        })();
+
+        //--3
+        (function () {
+            var ladder = {
+                step: 0,
+                up: function () { // вверх по лестнице
+                    this.step++;
+                    return this;
+                },
+                down: function () { // вниз по лестнице
+                    this.step--;
+                    return this;
+                },
+                showStep: function () { // вывести текущую ступеньку
+                    alert(this.step);
+                    return this;
+                }
+            };
+            ladder.up().up().down().up().down().showStep(); // 1
+        })();
+
+
+    </script>
+</body>
+</html>

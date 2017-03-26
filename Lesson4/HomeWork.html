@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        "use strict";
+        //--1
+        (function () {
+            Function.prototype.call = function () {
+                var slice = [].slice;
+                this.apply(arguments[0], slice.apply(arguments, [1]));
+            }
+            var name = {};
+            function test(a) { alert(a); }
+            //test.call(name,23);
+        })();
+       
+
+        //--2
+        (function () {
+            var doubleTheValue = function (val) { return val * 2; }
+            var addOneToTheValue = function (val) { return val + 1; }
+
+            function compose(arg) {
+                var forEachArgs = [].forEach;
+                var args = arguments;
+                var value = arguments[0];
+                forEachArgs.call(args, function (item) {
+                    if (typeof item == "function") {
+                        value = item(value);
+                    }
+                });
+                return value;
+            }
+
+            //alert(compose(5, doubleTheValue, addOneToTheValue, doubleTheValue));
+        })();
+       
+   
+        //--3
+        (function () {
+            var log = [];
+
+            function work(a) {
+            }
+
+            function makeLogging(f, log) {
+                return function () {
+                    for (var index in arguments) {
+                        log.push(arguments[index]);
+                    }
+                    return f.call(arguments);
+                }
+            }
+
+            var workWithLog = makeLogging(work, log);
+            workWithLog(3, 1);
+            workWithLog();
+            log.forEach(function (item) {
+                //alert('Log: ' + item);
+            });
+
+
+        })();
+       
+
+    </script>
+    
+</body>
+</html>
