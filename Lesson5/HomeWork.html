@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //--1
+        (function () {
+            function makeExpression() {
+                    try {
+                        var input = eval(prompt("Enter Math Expression"));
+                        if (isNaN(input)) {
+                            throw new SyntaxError("NaN occured");
+                        }
+                    }
+                    catch (e) {
+                        alert("Uncorrect input. Change Expression");
+                        return makeExpression();
+                    }
+                    alert("Result: " + input);
+            }
+            //makeExpression();
+        })();
+        //--2
+        (function () {
+            function smartSum() {
+                var sum = 0;
+                function count() {              
+                    var arr = arguments;
+                    for (var i = 0; i < arr.length; i++) {
+                        if (isNaN(+arr[i])) {
+                            arr[i] = 0;
+                        }
+                        sum += +arr[i];
+                    }
+                    return count;
+                }
+                count.toString = function () {
+                    return sum;
+                }
+                return count.apply(null,arguments);
+            }
+            //alert(smartSum(1, 2)(3, 4, 5)(6)(7, 10));
+            })();
+        //--3
+        (function () {
+
+            function reverseTimer(a) {
+                var timer = setInterval(function () {
+                    document.body.innerHTML = a;
+                    if (a <= 0) {
+                        clearInterval(timer);
+                        alert("Calculation is finished");
+                    }
+                    a--;
+                }, 1000);
+            }
+            reverseTimer(4);
+
+        })();
+    </script>
+</body>
+</html>

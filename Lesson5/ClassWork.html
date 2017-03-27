@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //--1
+        (function () {
+            function printNumber() {
+                var i = 0;
+                var timer = setInterval(function () {
+                    i++;
+                    (i > 20) ? clearInterval(timer) : document.write(i + "<br/>");
+                }, 100, i);
+            }
+            //printNumber();
+        })();
+        //--2
+        (function () {
+            var leader = {
+                name: "Василий Иванович",
+                age: 35
+            };
+            var json = JSON.stringify(leader);
+            //var json = '{"name":"Василий Иванович","age":35}';
+            var encodedJSON = JSON.parse(json);
+        })();
+        //--3
+        (function () {
+            function checkType(arg) {
+                try{
+                    if(arguments.length>1){
+                        throw new RangeError("Too many arguments");
+                    }
+                    return typeof arg;
+                }
+                catch(e){
+                    return (e.name + ": " + e.message);
+                }
+            }
+            //alert(checkType([]));
+        })();
+    </script>
+</body>
+</html>
