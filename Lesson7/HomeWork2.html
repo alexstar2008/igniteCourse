@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        body{
+            padding-top:100px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">I`m an anchor</a>
+    <div>I`m a div</div>
+    <script>
+        function positionAt(anchor, position, elem) {
+            elem.style.position = 'absolute';
+            var anchorRect = anchor.getBoundingClientRect();
+            switch (position) {
+                case "top": setPosition.call(elem, anchorRect.left, anchorRect.top - elem.offsetHeight); break;
+                case "bottom": setPosition.call(elem,anchorRect.left, anchorRect.bottom); break;
+                case "right": setPosition.call(elem,anchorRect.right, anchorRect.top); break;
+                default: return;
+            }
+            function setPosition(x, y) {
+                this.style.left = Math.ceil(x) + 'px';
+                this.style.top = Math.ceil(y) + 'px';
+            }
+        }
+        positionAt(document.getElementsByTagName('a')[0], "right", document.getElementsByTagName('div')[0]);
+        positionAt(document.getElementsByTagName('a')[0], "top", document.getElementsByTagName('div')[0]);
+        positionAt(document.getElementsByTagName('a')[0], "bottom", document.getElementsByTagName('div')[0]);
+    </script>
+</body>
+</html>

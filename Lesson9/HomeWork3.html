@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        #element{
+            width:50px;
+            height:50px;
+            position:absolute;
+            background-color:orangered;
+            top:200px;
+            left:200px;
+        }
+        .wrapper{
+            margin:10px;
+            z-index:100;
+            width:200px;
+            text-align:center;
+        }
+        .wrapper *{
+            margin:10px auto;
+            display:block;
+        }
+        h4{
+            font-family:Verdana;
+            letter-spacing:1px;
+        }
+        button{
+            background-color:coral;
+            border:none;
+            padding:15px;
+            color:white;
+            border-radius:15px;
+            cursor:pointer;
+        }
+        button:hover{
+            opacity:0.7;
+        }
+    </style>
+</head>
+<body> 
+    <div class="wrapper">
+        <h4>Блок управления</h4>
+        <input type="text" id="xField" placeholder="x" />
+        <input type="text" id="yField" placeholder="y" />
+        <button id="send">Переместить</button>
+    </div>
+    <div id="element"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            yField.style.backgroundColor = 'transparent';
+            xField.style.backgroundColor = 'transparent';
+            function Point(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            send.onclick = function (event) {
+                var pointAim = new Point(xField.value, yField.value);
+                if (!pointAim.x) {
+                    xField.style.backgroundColor = 'red';
+                    alert('Проверьте заполнение координаты x ')
+                    return;
+                }
+                if (!pointAim.y) {
+                    yField.style.backgroundColor = 'red';
+                    alert('Проверьте заполнение координат y')
+                    return;
+                }
+                element.style.left = pointAim.x + 'px';
+                element.style.top = pointAim.y + 'px';
+            }
+        })
+    </script>
+</body>
+</html>

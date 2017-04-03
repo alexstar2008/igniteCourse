@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        h3 {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #result {
+            display: inline-block;
+            width: 300px;
+            height: 50px;
+            border: 2px solid green;
+            margin: 15px;
+            margin-bottom: 50px;
+        }
+
+        #operations {
+            margin-top: 25px;
+        }
+        button{
+            font-size:200%;
+            cursor:pointer;    
+        }
+    </style>
+</head>
+<body>
+    <label for="paramA">Enter A: </label>
+    <input type="text" id="paramA" placeholder=" param A" />
+    <label for="paramB">Enter B: </label>
+    <input type="text" id="paramB" placeholder=" param B" /><br />
+    <div id="operations">
+        <h3>Choose operation:</h3>
+        <button id="sum">+</button>
+        <button id="sub">-</button>
+        <button id="mult">*</button>
+        <button id="divid">/</button><br />
+    </div>
+    <h3>Result</h3>
+    <div id="result"></div><br />
+    <script>
+        window.onload = function () {
+            var resElement = result;
+            var sumID = document.getElementById('sum');
+            var subID = document.getElementById('sub');
+            var multID = document.getElementById('mult');
+            var dividID = document.getElementById('divid');
+
+            sumID.addEventListener('click', sum);
+            subID.addEventListener('click', sub);
+            multID.addEventListener('click', multiple);
+            dividID.addEventListener('click', divide);
+
+            function sum() {
+                resElement.innerText = +paramA.value + +paramB.value;
+            }
+
+            function sub() {
+                resElement.innerText = paramA.value - paramB.value;
+            }
+            function multiple() {
+                resElement.innerText = paramA.value * paramB.value;
+            }
+            function divide() {
+                resElement.innerText = paramA.value / paramB.value;
+            }
+        }
+       
+    </script>
+</body>
+</html>

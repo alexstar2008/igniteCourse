@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        td{
+            width:50px;
+            height:50px;
+        }
+    </style>
+</head>
+<body>
+    <table ></table>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            function makeBoard(rows, cols) {
+                var table = document.getElementsByTagName('table')[0];
+                var fragment = document.createDocumentFragment();
+                for (var i = 0; i < rows; i++) {
+                    var row = document.createElement('tr');
+                    for(var j=0;j<cols;j++){
+                        var col = document.createElement('td');
+                        if (i % 2 == 0) {
+                            j % 2 != 0 ? col.style.backgroundColor = 'black' : col.style.backgroundColor = 'white'; 
+                        }
+                        else{
+                            j % 2 != 0 ? col.style.backgroundColor = 'white' : col.style.backgroundColor = 'black';
+                        }
+                        row.appendChild(col);
+                    }
+                    fragment.appendChild(row);
+                }
+                table.appendChild(fragment);
+            }
+            makeBoard(8, 8);
+        });
+    </script>
+</body>
+</html>

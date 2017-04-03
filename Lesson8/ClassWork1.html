@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div ></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <button>Change Color</button>
+    <script>
+        window.onload = function () {
+            var button = document.getElementsByTagName('button')[0];
+            button.addEventListener('click',changeColorHandler);
+
+            function changeColorHandler(){
+                var divs = document.getElementsByTagName('div');
+
+                if (divs[divs.length - 1].style.backgroundColor == 'red') {
+                    divs[divs.length - 1].removeAttribute('style');
+                    divs[0].style.backgroundColor = 'red';
+                    return;
+                }
+
+                for (var i = 0; i < divs.length; i++) {
+                    if (divs[i].style.backgroundColor == 'red') {
+                        divs[i].removeAttribute('style');
+                        divs[i].nextElementSibling.style.backgroundColor = 'red';
+                        break;
+                    }
+                    if (i == divs.length - 1) {
+                        divs[0].style.backgroundColor = 'red';
+                    }
+                }
+            
+            }
+           
+        }
+    </script>
+</body>
+</html>

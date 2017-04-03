@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        .tooltip{
+            position:fixed;
+            padding:5px 10px;
+            border: 2px solid coral;
+            border-radius:5px;
+
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: coral transparent transparent transparent;
+        }
+   
+    </style>
+</head>
+<body>
+       
+        <button data-tooltip="подсказка длиннее, чем элемент" style="margin-top:125px;margin-left:125px;">Короткая кнопка</button>
+        <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+    <script>
+        window.onload = function (event) {
+            document.addEventListener('mouseover', tooltipShow);
+            document.addEventListener('mouseout', tooltipHide);
+            function tooltipShow(event) {
+                var targetElement = event.target;
+                if (targetElement.dataset.tooltip) {
+                    var tooltip = document.createElement('span');
+                    tooltip.innerHTML = targetElement.dataset.tooltip;
+                    tooltip.className = "tooltip";
+                    document.body.appendChild(tooltip);
+
+                    var offsetY = targetElement.offsetTop - tooltip.offsetHeight - 10;
+                    if (offsetY < 0) {
+                        var offsetY = targetElement.offsetTop + tooltip.offsetHeight + 10;
+                    }
+                    var offsetX = targetElement.offsetLeft + (targetElement.offsetWidth - tooltip.offsetWidth) / 2;
+                    if (offsetX < 0) {
+                        offsetX = 0;
+                    }
+                    tooltip.style.left = offsetX+'px';
+                    tooltip.style.top = offsetY + 'px';
+                }
+            }
+
+            function tooltipHide(event) {
+                var targetElement = event.target;
+                if (targetElement.dataset.tooltip) {
+                    var tootlip = document.getElementsByClassName('tooltip')[0];
+                    document.body.removeChild(tootlip);
+                }
+
+            }
+           
+        }
+    </script>
+</body>
+</html>

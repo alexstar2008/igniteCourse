@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        div{
+            position:absolute;
+            width:125px;
+            height:125px;
+            top:0;
+            left:0;
+            color:white;
+            text-align:center;
+        }
+        #first{
+           background-color:red;
+        }
+        #second {
+            background-color:green;
+        }
+        #third {
+           background-color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="first">First div</div>
+    <div id="second">Second div</div>
+    <div id="third">Third div</div>
+
+    <script>
+        window.onload = function () {
+            var divs = document.getElementsByTagName('div');
+            var timer = setInterval(function () {
+                var screenWidth = document.documentElement.clientWidth;
+                var screenHeight = document.documentElement.clientHeight;
+               
+                for (var i = 0; i < divs.length;i++) {
+                    divs[i].style.top = Math.floor(Math.random() * (screenHeight - divs[i].offsetHeight)) + 'px';
+                    divs[i].style.left = Math.floor(Math.random() * (screenWidth - divs[i].offsetWidth)) + 'px';
+                }
+             
+              
+            }, 1000);
+
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <style>
+        li{
+            cursor:pointer;
+        }
+        .selected{
+            background-color:green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <ol>Four</ol>
+    </ul>
+    <script>
+        var ul = document.getElementsByTagName('ul')[0];
+        ul.addEventListener('click', function (event) {
+            if(event.target.matches('li'))
+            event.target.classList.toggle('selected');
+        });
+        
+    </script>
+</body>
+</html>

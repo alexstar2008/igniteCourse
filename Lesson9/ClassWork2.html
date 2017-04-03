@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        body{
+            margin-bottom:5000px;
+        }
+        #scrollHelper{
+            position:fixed;
+            padding:10px 20px;
+            background-color:transparent;
+            color:coral;
+            border: 5px solid coral;
+            font-size:200%;
+            
+            bottom:30px;
+            left:15px;
+
+            cursor:pointer;
+            border-radius:40px;
+            visibility:hidden;
+        }
+        .down{
+
+        }
+        .up{
+
+        }
+    </style>
+</head>
+<body>
+    <button id="scrollHelper"></button>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var scrollButton = document.getElementById('scrollHelper');
+     
+            var scrollPointY = 0;
+            window.onscroll = function () {
+                var offsetHeight = window.pageYOffset;
+                var screenHeight = window.innerHeight;
+                if (offsetHeight > screenHeight) {
+                    scrollButton.style.visibility = 'visible';
+                    scrollButton.innerHTML = "↑";
+                    scrollPointY = 0;
+                }
+                else if (scrollPointY == 0) {
+                    scrollButton.style.visibility = 'hidden';
+                    scrollButton.innerHTML = "↑";
+                }
+            }
+            scrollButton.onclick = function () {
+          
+                switch (scrollButton.innerHTML){
+                    case "↑":
+                        scrollPointY = window.pageYOffset;
+                        window.scrollTo(0, 0);
+                        scrollButton.innerHTML = "↓";
+                        break;
+                    case "↓":
+                        window.scrollTo(0, scrollPointY);
+                        scrollButton.innerHTML = "↑";
+
+                }
+         
+            }
+          
+        });
+    </script>
+</body>
+</html>

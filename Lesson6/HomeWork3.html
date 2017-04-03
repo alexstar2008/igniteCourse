@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div id="test">
+        <a>
+        </a>
+        <h1></h1>
+        <ul>
+            <li>
+                <span></span>
+            </li>
+            <li>
+                <div></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        Element.prototype.closestPlyphill = function (css) {
+
+            if (!document.documentElement.closest) {
+                var node = this;
+                do {
+                    if (node.matches(css))
+                        return node;
+                    else
+                        node = node.parentElement;
+                } while (node);
+                return null;
+            }
+            else {
+                return this.closest(css);
+            }
+        }
+      
+        var span = document.getElementsByTagName('span')[0];
+        alert(span.closestPlyphill('#test'));
+    </script>
+</body>
+</html>

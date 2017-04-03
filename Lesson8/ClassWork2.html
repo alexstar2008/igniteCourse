@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        h2{
+            color:coral;
+            letter-spacing:2px;
+        }
+        button{
+            cursor:pointer;
+            background-color:coral;
+            border:none;
+            padding:15px;
+            border-radius:5px;
+            color:white;
+            font-size:100%;
+        }
+        button:hover{
+            opacity:0.7;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input"/>
+    <button id="saveButton">Save content</button><br/>
+    <h2>Ouput</h2>
+    <div id="output"></div>
+    <script>
+        window.onload = function () {
+            saveButton.addEventListener('click',saveInputToDiv);
+            function saveInputToDiv() {
+                if (!input.value) {
+                    alert('Enter data into input, please !');
+                    return;
+                }
+                output.innerText = input.value;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        div{
+            color:white;
+            font-size:150%;
+        width:125px;
+            height:125px;
+        }
+        span{
+            color:red;
+            font-size:100%
+        }
+        #blue{ background-color:blue;}
+        #green{ background-color:green;}
+        #yellow{ background-color:yellow;}
+        #black{ background-color:black;}
+      
+    </style>
+</head>
+<body>
+    <div id="blue" >Blue</div>
+    <div id="green" >Green</div>
+    <div id="yellow" >Yellow</div>
+    <div id="black">Black</div>
+
+    <script>
+        window.onload = function () {
+            var span = document.createElement('span');
+            span.innerHTML = 'i`m not sure about my life';
+
+            var counter = 0;
+            var divs = document.getElementsByTagName('div');
+            var amount = divs.length;
+            var timer = setInterval(function () {
+                var currentDiv = divs[divs.length - amount];
+                switch (counter) {
+                    case 0: document.body.insertBefore(span, currentDiv); break;
+                    case 1: currentDiv.insertBefore(span, currentDiv.firstChild); break;
+                    case 2: currentDiv.removeChild(span); currentDiv.insertBefore(span, currentDiv.firstChild.nextSibling); break;
+                    case 3: document.body.insertBefore(span, currentDiv.nextSibling); break;
+                }
+                counter++;
+                if (counter == 4) {
+                    counter = 0;
+                    amount--;
+                }
+            }, 400);
+        }
+    </script>
+</body>
+</html>
