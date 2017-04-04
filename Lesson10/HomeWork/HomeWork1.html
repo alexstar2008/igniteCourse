@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <button id="get_context">GET context</button>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var btn_get_context = document.getElementById('get_context');
+            btn_get_context.onclick = function () {
+
+                var xhr = makeGetAsyncRequest();
+                xhr('PartialFirst.html', document.body);
+
+                var xhr2 = makeGetAsyncRequest();
+                xhr2('PartialSecond.html',document.body);
+
+                function makeGetAsyncRequest() {
+                    var xhr = new XMLHttpRequest();
+                    return function (src,dest) {
+                        xhr.open('GET', src, true);
+                        xhr.send();
+
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    dest.innerHTML+=xhr.responseText;
+                                }
+                            }
+                        }
+                    }
+                }
+             
+              
+            }
+           
+        });
+    </script>
+</body>
+</html>

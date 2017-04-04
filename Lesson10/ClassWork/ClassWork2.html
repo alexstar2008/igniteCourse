@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'task_phone/phones.json');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    var phones = JSON.parse(this.responseText);
+                    var ulWrapper= document.createElement('ul');
+                    for (var phoneIndex in phones) {
+                        var element = document.createElement('li');
+                        element.innerText = phones[phoneIndex].name;
+                        ulWrapper.appendChild(element);
+                    }
+                    document.body.appendChild(ulWrapper);
+                }
+                else {
+                    alert('Error of loading JSON');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

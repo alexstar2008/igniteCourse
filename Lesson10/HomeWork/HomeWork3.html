@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <label for="a">Enter a</label>
+    <input type="text" id="a" placeholder="0" /><br/><br />
+    <label for="b">Enter b</label>
+    <input type="text" id="b" placeholder="0" /><br/><br/>
+    <button id="btn_send">Send data</button>
+
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            btn_send.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'CalcHandler.ashx', true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                var aVal = a.value || 0;
+                var bVal = b.value || 0;
+                xhr.send('a=' + aVal + '&b=' + bVal);
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        alert('Result: ' + this.responseText);
+                    }
+                    else {
+                        alert('Error of calculating');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
